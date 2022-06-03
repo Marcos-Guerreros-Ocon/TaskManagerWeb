@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/241b62bbe0.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/10359/calendar.svg" type="image/x-icon">
+    <title>Tareas</title>
+    
+</head>
+<script>
+    var numero = 0;
+
+    function aniadirTarea() {
+        var nombreTarea = document.getElementById('nombreTarea').value;
+        var descripcionTarea = document.getElementById('descripcionTarea').value;
+
+
+        if (nombreTarea == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El nombre de la tarea está vacio.',
+            });
+            return 'error';
+        }
+        if (descripcionTarea == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'La descripción de la tarea está vacio.',
+            });
+            return 'error';
+        }
+
+        numero++;
+        document.getElementById('accordionExample').innerHTML +=
+            '<div class="accordion-item" id="' + numero + '">\n' +
+            '    <h2 class="accordion-header" id="heading' + numero + '">\n' +
+            '      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + numero + '" aria-expanded="true" aria-controls="collapse' + numero + '">\n' +
+            '        <h5>' + nombreTarea + '\n </h5>' +
+            '      </button>\n' +
+            '    </h2>\n' +
+            '    <div id="collapse' + numero + '" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">\n' +
+            '      <div class="accordion-body">\n' +
+            '       <p>' + descripcionTarea + '</p>' +
+            '<button class="btn btn-danger"onclick="borrarTarea(' + numero + ')">Tarea Terminada</button>' +
+            '      </div>\n' +
+            '    </div>\n' +
+            '  </div>';
+
+        document.getElementById('nombreTarea').value = "";
+        document.getElementById('descripcionTarea').value = "";
+    }
+
+    function borrarTarea(numero) {
+        Swal.fire({
+            title: '¿Quieres borrar esta tarea?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Borrar',
+            denyButtonText: `No borrar`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                document.getElementById(numero).remove();
+                Swal.fire('Tarea borrada', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Cambios no guardados', '', 'info')
+            }
+        })
+
+    }
+</script>
+<style>
+    footer {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        padding: 20px;
+    }
+</style>
+<body>
+<div class="px-4 py-5 my-5 text-center">
+    <img src="https://www.svgrepo.com/show/10359/calendar.svg" height="75px">
+    <h1 class="display-5 fw-bold">Task Manager</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+            Esta aplicación donde puedes apuntar y borrar tareas que tengas, podrás organizarte con calma,
+            apuntar tus tareas y así organizar tu día con calma. Cuando hayas terminado esta tarea podras borrarla y
+            ocuparte de otra tarea.
+            Tanto la inerfaz como el funcionamienta de dicha apliación está realizado por<br><strong>Marcos
+            Guerreros</strong></p>
+
+    </div>
+</div>
+<div class="container px-4">
+    <div class="row gx-5">
+        <div class="col ">
+            <form>
+                <label for="nombreTarea" class="form-label">Nombre De La Tarea</label>
+                <input type="text" class="form-control" id="nombreTarea">
+                <br>
+                <div class="form-group">
+                    <label for="descripcionTarea">Descripción De La Tarea</label>
+                    <textarea class="form-control" id="descripcionTarea" rows="4"></textarea>
+                </div>
+                <br>
+                <div class="col text-center">
+                    <input class="btn btn-primary" type="button" onclick="aniadirTarea()" value="Agregar Tarea">
+                </div>
+
+            </form>
+        </div>
+        <div class="col">
+            <h2>Tareas</h2>
+            <div class="accordion" id="accordionExample">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center text-white page-footer" style="background-color: #f1f1f1;">
+    <section>
+        <!-- GitHub -->
+        <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://github.com/Marcos-Guerreros-Ocon"
+                role="button"
+                data-mdb-ripple-color="dark"
+        ><i class="fab fa-github fa-xl"></i
+        ></a>
+
+        <!-- Twitter -->
+        <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://es.linkedin.com/in/marcos-guerreros-oc%C3%B3n-22a020233?trk=public_profile_browsemap&original_referer=https%3A%2F%2Fwww.google.com%2F"
+                role="button"
+                data-mdb-ripple-color="dark"
+        ><i class="fab fa-linkedin fa-xl"></i
+        ></a>
+
+        <!-- Google -->
+        <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+        ><i class="fa-brands fa-slack fa-xl"></i
+        ></a>
+
+        <!-- Instagram -->
+        <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram fa-xl"></i
+        ></a>
+    </section>
+</footer>
+</body>
+</html>
