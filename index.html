@@ -57,6 +57,12 @@
 
         document.getElementById('nombreTarea').value = "";
         document.getElementById('descripcionTarea').value = "";
+
+        Swal.fire({
+            icon: 'success',
+            title: '¡Genial!',
+            text: 'Tarea subida correctamente',
+        })
     }
 
     function borrarTarea(numero) {
@@ -86,9 +92,9 @@
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">
             Esta aplicación donde puedes apuntar y borrar tareas que tengas, podrás organizarte con calma,
-            apuntar tus tareas y así organizar tu día con calma. Cuando hayas terminado esta tarea podras borrarla y
+            apuntar tus tareas y así organizar tu día con calma. Cuando hayas terminado esta tarea podrás borrarla y
             ocuparte de otra tarea.
-            Tanto la inerfaz como el funcionamienta de dicha apliación está realizado por<br><strong>Marcos
+            Tanto la interfaz como el funcionamiento de dicha aplicación está realizado por<br><strong>Marcos
             Guerreros</strong></p>
 
     </div>
@@ -152,7 +158,7 @@
             <!-- Instagram -->
             <a
                     class="btn btn-link btn-floating btn-lg text-dark m-1"
-                    href="#!"
+                    href="https://www.instagram.com/chospas/"
                     role="button"
                     data-mdb-ripple-color="dark"
             ><i class="fab fa-instagram fa-xl"></i
